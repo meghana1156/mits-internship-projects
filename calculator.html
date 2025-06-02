@@ -1,0 +1,59 @@
+<!-- calculator.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Simple Calculator</title>
+  <style>
+    body { font-family: sans-serif; background: #e9ecef; text-align: center; padding: 50px; }
+    h1 { color: #007bff; }
+    input, select, button {
+      padding: 10px;
+      margin: 5px;
+      font-size: 16px;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <h1>Simple Calculator</h1>
+  <input type="number" id="num1" placeholder="Enter first number">
+  <select id="operation">
+    <option value="+">+</option>
+    <option value="-">−</option>
+    <option value="*">×</option>
+    <option value="/">÷</option>
+  </select>
+  <input type="number" id="num2" placeholder="Enter second number">
+  <button onclick="calculate()">Calculate</button>
+  <div id="result"></div>
+
+  <script>
+    function calculate() {
+      const num1 = parseFloat(document.getElementById('num1').value);
+      const num2 = parseFloat(document.getElementById('num2').value);
+      const op = document.getElementById('operation').value;
+      let result;
+
+      if (isNaN(num1) || isNaN(num2)) {
+        result = "Please enter valid numbers.";
+      } else {
+        switch (op) {
+          case '+': result = num1 + num2; break;
+          case '-': result = num1 - num2; break;
+          case '*': result = num1 * num2; break;
+          case '/':
+            result = num2 === 0 ? "Cannot divide by zero." : num1 / num2;
+            break;
+        }
+      }
+      document.getElementById('result').innerText = `Result: ${result}`;
+    }
+  </script>
+</body>
+</html>
